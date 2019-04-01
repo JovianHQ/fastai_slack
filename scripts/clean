@@ -1,0 +1,5 @@
+#! /bin/bash
+
+trash ./fastai_slack.egg-info
+trash ./dist
+trash ./build

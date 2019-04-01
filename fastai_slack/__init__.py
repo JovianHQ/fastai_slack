@@ -11,7 +11,7 @@ import os
 import json
 
 
-def read_webhook_url(check_env=False):
+def read_webhook_url(check_env=False, help_text=False):
     """Read the Slack incoming webhook URL from user input. See https://api.slack.com/incoming-webhooks
 
     Arguments:
@@ -22,10 +22,12 @@ def read_webhook_url(check_env=False):
     if ENV_KEY in os.environ:
         return os.environ[ENV_KEY]
     else:
-        print('You must provide a "Slack Incoming Webhook" URL for sending messages. ' +
-              'You can generate a webhook URL for your workspace by following this ' +
-              'guide: https://api.slack.com/incoming-webhooks')
-        url = getpass('Enter webhook URL:')
+        if help_text:
+            print('You must provide a "Slack Incoming Webhook" URL for sending messages. ' +
+                  'You can generate a webhook URL for your workspace by following this ' +
+                  'guide: https://api.slack.com/incoming-webhooks')
+        print('Enter webhook URL:')
+        url = getpass()
         return url
 
 
@@ -89,13 +91,13 @@ class SlackCallback(Callback):
 
     def __init__(self, name, webhook_url=None, frequency=1):
         self.name, self.freq, self.tag = name, frequency, ''
-        self.url = webhook_url or read_webhook_url(True)
+        self.url = webhook_url or read_webhook_url(True, True)
 
     def _send(self, msg):
         """Send a notification with name and tag included"""
         if isinstance(msg, (list, tuple)):
             msg = '\n'.join(msg)
-        sendNotification(self.url, f'[{self.name} `{self.tag}`] {msg}')
+        sendNotification(self.url, f'[`{self.name} {self.tag}`] {msg}')
 
     def _send_metrics(self, ka, msg=None):
         """Format and send metrics for the current epoch"""

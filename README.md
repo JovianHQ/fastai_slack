@@ -2,6 +2,8 @@
 
 Get slack notifications for [FastAI](https://github.com/fastai/fastai) model training.
 
+Demo: https://jvn.io/aakashns/2e505d1a5e7b49e18e7849da3280b9da
+
 `fastai_slack` provides a simple callback to receive Slack notifcations while training FastAI models, with just one extra line of code. 
 
 ![](https://i.imgur.com/XkGHCFR.gif)

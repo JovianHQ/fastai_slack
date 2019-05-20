@@ -71,6 +71,6 @@ FASTAI_SLACK_WEBHOOK=https://hooks.slack.com/services/T00000/B0000/XXXXXXXXXXX
 ```
 
 ## Contributing
-fastai_slack is open source, and you can view the source code here: https://github.com/swiftace-ai/fastai_slack
+fastai_slack is open source, and you can view the source code here: https://github.com/jvn-io/fastai_slack
 
 Please use Github to report bugs, request/propose feature. Pull requests with bug fixes and PRs are most welcome!
